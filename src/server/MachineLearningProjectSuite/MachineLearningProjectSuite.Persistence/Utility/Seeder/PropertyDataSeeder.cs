@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using CsvHelper;
 using MachineLearningProjectSuite.Application.Utility.Seeder;
-using MachineLearningProjectSuite.Domain.Entities;
+using MachineLearningProjectSuite.Domain.Entities.Property;
 
 namespace MachineLearningProjectSuite.Persistence.Utility.Seeder
 {

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using MachineLearningProjectSuite.Application.Feature.Repository.Property;
 using MachineLearningProjectSuite.Application.Utility.Seeder;
 using MachineLearningProjectSuite.Persistence.Database;
 using MachineLearningProjectSuite.Persistence.Database.Base;
@@ -22,6 +23,8 @@ namespace MachineLearningProjectSuite.Persistence
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<PropertyDataSeeder>().As<IPropertyDataSeeder>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<IPropertyListingRepository>().As<IPropertyListingRepository>()
                 .InstancePerLifetimeScope();
         }
     }

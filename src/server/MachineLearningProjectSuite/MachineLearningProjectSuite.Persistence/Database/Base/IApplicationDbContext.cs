@@ -1,4 +1,4 @@
-﻿using MachineLearningProjectSuite.Domain.Entities;
+﻿using MachineLearningProjectSuite.Domain.Entities.Property;
 using Microsoft.EntityFrameworkCore;
 
 namespace MachineLearningProjectSuite.Persistence.Database.Base

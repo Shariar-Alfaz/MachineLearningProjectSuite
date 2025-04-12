@@ -1,4 +1,4 @@
-﻿using MachineLearningProjectSuite.Domain.Entities;
+﻿using MachineLearningProjectSuite.Domain.Entities.Property;
 
 namespace MachineLearningProjectSuite.Application.Utility.Seeder
 {

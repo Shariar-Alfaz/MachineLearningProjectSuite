@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearningProjectSuite
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearningProjectSuite.Persistence", "MachineLearningProjectSuite.Persistence\MachineLearningProjectSuite.Persistence.csproj", "{D7FBC57B-1AB8-4700-9BB0-1CE29949FAAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearningProjectSuite.Infrastructure", "MachineLearningProjectSuite.Infrastructure\MachineLearningProjectSuite.Infrastructure.csproj", "{08B7C524-DC46-4438-9FC1-D7B0CB43B217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{D7FBC57B-1AB8-4700-9BB0-1CE29949FAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7FBC57B-1AB8-4700-9BB0-1CE29949FAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7FBC57B-1AB8-4700-9BB0-1CE29949FAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08B7C524-DC46-4438-9FC1-D7B0CB43B217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B7C524-DC46-4438-9FC1-D7B0CB43B217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B7C524-DC46-4438-9FC1-D7B0CB43B217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B7C524-DC46-4438-9FC1-D7B0CB43B217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

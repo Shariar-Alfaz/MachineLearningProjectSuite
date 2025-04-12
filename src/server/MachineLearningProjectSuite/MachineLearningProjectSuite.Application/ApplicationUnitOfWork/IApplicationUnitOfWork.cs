@@ -1,4 +1,4 @@
-﻿using MachineLearningProjectSuite.Application.Feature.Repository;
+﻿using MachineLearningProjectSuite.Application.Feature.Repository.Property;
 using MachineLearningProjectSuite.Domain.UnitOfWork;
 
 namespace MachineLearningProjectSuite.Application.ApplicationUnitOfWork
