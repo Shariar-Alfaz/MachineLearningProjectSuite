@@ -1,6 +1,6 @@
 ﻿using MachineLearningProjectSuite.Domain.Entities.Base;
 
-namespace MachineLearningProjectSuite.Domain.Entities
+namespace MachineLearningProjectSuite.Domain.Entities.Property
 {
     public class PropertyListing : IBaseEntity<Guid>
     {

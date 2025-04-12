@@ -3,6 +3,7 @@ using MachineLearningProjectSuite.Application.Feature.Repository.Property;
 using MachineLearningProjectSuite.Application.Utility.Seeder;
 using MachineLearningProjectSuite.Persistence.Database;
 using MachineLearningProjectSuite.Persistence.Database.Base;
+using MachineLearningProjectSuite.Persistence.Feature.Repository.Property;
 using MachineLearningProjectSuite.Persistence.Utility.Seeder;
 
 namespace MachineLearningProjectSuite.Persistence
@@ -24,7 +25,8 @@ namespace MachineLearningProjectSuite.Persistence
 
             builder.RegisterType<PropertyDataSeeder>().As<IPropertyDataSeeder>()
                 .InstancePerLifetimeScope();
-            builder.RegisterType<IPropertyListingRepository>().As<IPropertyListingRepository>()
+
+            builder.RegisterType<PropertyListingRepository>().As<IPropertyListingRepository>()
                 .InstancePerLifetimeScope();
         }
     }

@@ -1,8 +1,11 @@
 from flask import Flask
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
-    
-    from .routes.greet_route import greet_bp
-    app.register_blueprint(greet_bp, url_prefix='/api')
+    CORS(app)  # Enable CORS for all routes
+
+    from .routes.property_route import property_bp
+    app.register_blueprint(property_bp, url_prefix='/api')
+
     return app
