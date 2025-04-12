@@ -44,7 +44,7 @@ namespace MachineLearningProjectSuite.Persistence.Utility.Seeder
         public string FloorPlan { get; set; }
         public string Url { get; set; }
         public double Price { get; set; }
-        public string AddressValue { get; set; }
-        public string TypeValue { get; set; }
+        public int AddressValue { get; set; }
+        public int TypeValue { get; set; }
     }
 }

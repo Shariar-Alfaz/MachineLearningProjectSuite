@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MachineLearningProjectSuite.Application.Dto.Property;
 using MachineLearningProjectSuite.Application.Feature.Repository.Property;
 using MachineLearningProjectSuite.Domain.Entities.Property;
 using MachineLearningProjectSuite.Persistence.Database.Base;
@@ -15,5 +11,16 @@ namespace MachineLearningProjectSuite.Persistence.Feature.Repository.Property
         : BaseRepository<PropertyListing, Guid>((DbContext)context),
             IPropertyListingRepository
     {
+        public async Task<IList<AddressDto>> GetAddressesAsync()
+        {
+            var data = await QueryWithStoredProcedureAsync<AddressDto>("Proc_GetAddressList");
+            return data.result;
+        }
+
+        public async Task<IList<TypeDto>> GetTypesAsync()
+        {
+            var data = await QueryWithStoredProcedureAsync<TypeDto>("Proc_GetPropertyType");
+            return data.result;
+        }
     }
 }

@@ -22,13 +22,13 @@
     <div class="shadow-md p-5 w-full rounded-2xl border border-gray-200">
         <div class="grid grid-cols-12 items-center gap-4">
             <div class="col-span-10">
-                <div class="flex flex-wrap items-center gap-2  ms-5">
+                <div class="flex flex-wrap items-center gap-2">
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
                             Beds
                         </label>
                         <p-input-number size="small" [showButtons]="true" class="fix-width" spinnerMode="horizontal"
-                            buttonLayout="horizontal">
+                            buttonLayout="horizontal" [min]="1" [max]="8" [step]="1">
                             <ng-template #incrementbuttonicon>
                                 <span class="pi pi-plus"></span>
                             </ng-template>
@@ -42,7 +42,7 @@
                             Bath
                         </label>
                         <p-input-number size="small" [showButtons]="true" class="fix-width" spinnerMode="horizontal"
-                            buttonLayout="horizontal">
+                            buttonLayout="horizontal" [min]="1" [max]="8" [step]="1">
                             <ng-template #incrementbuttonicon>
                                 <span class="pi pi-plus"></span>
                             </ng-template>
@@ -53,21 +53,26 @@
                     </div>
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
-                            Area
+                            Area <sup class="text-xs font-normal">(ft<sup>2</sup>)</sup>
                         </label>
-                        <p-inputnumber size="small" prefix="" suffix=" ft²" />
+                        <p-inputnumber size="small" mode="decimal" [min]="100" [max]="32000" [minFractionDigits]="2"
+                            [maxFractionDigits]="5" />
                     </div>
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
                             Location
                         </label>
-                        <p-select size="small" />
+                        <p-select styleClass="w-50" [filter]="true" panelStyleClass="text-sm"
+                            [options]="initData.addresses" optionLabel="address" optionValue="addressValue" size="small"
+                            placeholder="Select home location" />
                     </div>
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
-                            type
+                            Type
                         </label>
-                        <p-select size="small" />
+                        <p-select [options]="initData.types" styleClass="w-50" optionLabel="type"
+                            optionValue="typeValue" size="small" placeholder="Select home type"
+                            panelStyleClass="text-sm" />
                     </div>
                 </div>
             </div>
