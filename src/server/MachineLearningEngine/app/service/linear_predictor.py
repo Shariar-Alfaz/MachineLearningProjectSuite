@@ -2,7 +2,7 @@ import joblib
 import numpy as np
 import os
 
-model_path = os.path.join(os.path.dirname(__file__), '../models/home_rent_lr.pkl')
+model_path = os.path.join(os.path.dirname(__file__), '../models/trained/home_rent_lr.pkl')
 model = joblib.load(model_path)
 
 def predict_rent(data):

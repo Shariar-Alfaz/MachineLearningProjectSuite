@@ -1,0 +1,3 @@
+:host ::ng-deep .fix-width .p-inputnumber-input {
+  width: 50px !important;
+}
