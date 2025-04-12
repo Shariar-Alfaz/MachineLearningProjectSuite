@@ -1,10 +1,9 @@
-import pickle
+import joblib
 import numpy as np
 import os
 
 model_path = os.path.join(os.path.dirname(__file__), '../models/home_rent_lr.pkl')
-with open(model_path, 'rb') as f:
-    model = pickle.load(f)
+model = joblib.load(model_path)
 
 def predict_rent(data):
     features = np.array([[data['beds'],data['bath'],data['area'],data['address'],data['type']]])

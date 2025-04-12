@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from services.linear_predictor import predict_rent
+from app.service.linear_predictor import predict_rent
 
 property_bp = Blueprint('property', __name__)
 
@@ -17,6 +17,6 @@ def predict_property_price():
 
     try:
         prediction = predict_rent(data)
-        return jsonify({"predicted_price": prediction}), 200
+        return jsonify({"predictedPrice": prediction}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
