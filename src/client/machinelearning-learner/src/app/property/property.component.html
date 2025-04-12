@@ -1,0 +1,82 @@
+<div class="relative h-[600px] text-white">
+    <!-- Background image -->
+    <img src="/herro/house_rent.JPG" class="absolute inset-0 w-full h-full object-cover z-0" alt="">
+
+    <!-- Black overlay mask -->
+    <div class="absolute inset-0 bg-black/20 z-1"></div>
+
+    <!-- Text content -->
+    <div class="absolute inset-0 flex items-center justify-center z-20">
+        <div class="text-left w-4xl">
+            <div class="text-5xl md:text-7xl font-bold">Find Your Perfect Home</div>
+            <div class="text-2xl md:text-4xl mt-4">Explore Top Rental Properties Near You</div>
+            <p class="mt-4">From cozy apartments to spacious family homes, discover rentals that match your lifestyle
+                and budget.
+                Start your search
+                today and move in tomorrow!</p>
+        </div>
+    </div>
+</div>
+
+<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-8">
+    <div class="shadow-md p-5 w-full rounded-2xl border border-gray-200">
+        <div class="grid grid-cols-12 items-center gap-4">
+            <div class="col-span-10">
+                <div class="flex flex-wrap items-center gap-2  ms-5">
+                    <div class="flex-auto">
+                        <label class="mb-2 block font-bold" for="beds">
+                            Beds
+                        </label>
+                        <p-input-number size="small" [showButtons]="true" class="fix-width" spinnerMode="horizontal"
+                            buttonLayout="horizontal">
+                            <ng-template #incrementbuttonicon>
+                                <span class="pi pi-plus"></span>
+                            </ng-template>
+                            <ng-template #decrementbuttonicon>
+                                <span class="pi pi-minus"></span>
+                            </ng-template>
+                        </p-input-number>
+                    </div>
+                    <div class="flex-auto">
+                        <label class="mb-2 block font-bold" for="beds">
+                            Bath
+                        </label>
+                        <p-input-number size="small" [showButtons]="true" class="fix-width" spinnerMode="horizontal"
+                            buttonLayout="horizontal">
+                            <ng-template #incrementbuttonicon>
+                                <span class="pi pi-plus"></span>
+                            </ng-template>
+                            <ng-template #decrementbuttonicon>
+                                <span class="pi pi-minus"></span>
+                            </ng-template>
+                        </p-input-number>
+                    </div>
+                    <div class="flex-auto">
+                        <label class="mb-2 block font-bold" for="beds">
+                            Area
+                        </label>
+                        <p-inputnumber size="small" prefix="" suffix=" ft²" />
+                    </div>
+                    <div class="flex-auto">
+                        <label class="mb-2 block font-bold" for="beds">
+                            Location
+                        </label>
+                        <p-select size="small" />
+                    </div>
+                    <div class="flex-auto">
+                        <label class="mb-2 block font-bold" for="beds">
+                            type
+                        </label>
+                        <p-select size="small" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="flex justify-end">
+                    <p-button label="Search" icon="pi pi-search" class="p-button-sm p-button-primary"></p-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
