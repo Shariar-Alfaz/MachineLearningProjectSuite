@@ -67,7 +67,6 @@ export class PropertyComponent {
   }
 
   loadData(event: any) {
-    debugger;
     this.searchProperty.skip = event.first;
     this.searchProperty.length = this.length;
     this.getPropertyList();
