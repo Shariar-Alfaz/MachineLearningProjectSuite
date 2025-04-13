@@ -1,7 +1,6 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using MachineLearningProjectSuite.API;
 using MachineLearningProjectSuite.Infrastructure;
 using MachineLearningProjectSuite.Persistence;
 using MachineLearningProjectSuite.Persistence.Database;
@@ -42,7 +41,8 @@ try
     builder.Services.AddControllers();
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddOpenApi();
-
+    builder.Services.AddHttpContextAccessor();
+    builder.Services.AddHttpClient();
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.

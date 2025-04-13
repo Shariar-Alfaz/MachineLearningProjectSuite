@@ -1,13 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
-import { InitRequestModel, ResponseModel } from '../../models/type/app.type';
+import {
+  InitRequestModel,
+  PropertyListing,
+  ResponseModel,
+  SearchProperty,
+} from '../../models/type/app.type';
 import { PropertyService } from '../../services/property/property.service';
-
+import { DataViewLazyLoadEvent, DataViewModule } from 'primeng/dataview';
+import { Data } from '@angular/router';
 @Component({
   selector: 'app-property',
   imports: [
@@ -17,6 +23,7 @@ import { PropertyService } from '../../services/property/property.service';
     InputNumberModule,
     SelectModule,
     FormsModule,
+    DataViewModule,
   ],
   templateUrl: './property.component.html',
   styleUrl: './property.component.css',
@@ -27,7 +34,15 @@ export class PropertyComponent {
     types: [],
   };
 
+  propertylist = signal<PropertyListing[]>([]);
+
   propertyService = inject(PropertyService);
+
+  searchProperty = {} as SearchProperty;
+
+  predictedPrice!: number;
+  length = 50;
+  totalRecords = 0;
 
   ngOnInit() {
     this.getInitialData();
@@ -39,5 +54,43 @@ export class PropertyComponent {
       .subscribe((res: ResponseModel<InitRequestModel>) => {
         this.initData = res.data;
       });
+  }
+
+  getPropertyList() {
+    this.propertyService
+      .getPropertyListData(this.searchProperty)
+      .subscribe((res: ResponseModel<PropertyListing>) => {
+        this.propertylist.set(res.listData);
+        this.totalRecords = res.totalRecords;
+        console.log(this.propertylist);
+      });
+  }
+
+  loadData(event: any) {
+    debugger;
+    this.searchProperty.skip = event.first;
+    this.searchProperty.length = this.length;
+    this.getPropertyList();
+  }
+
+  searchPropertyList() {
+    this.searchProperty.skip = 0;
+    this.searchProperty.length = this.length;
+    this.getPropertyList();
+    this.predictPrice();
+  }
+
+  predictPrice() {
+    if (
+      this.searchProperty.bed &&
+      this.searchProperty.bath &&
+      this.searchProperty.area
+    ) {
+      this.propertyService
+        .predictPrice(this.searchProperty)
+        .subscribe((res: ResponseModel<number>) => {
+          this.predictedPrice = res.data;
+        });
+    }
   }
 }

@@ -11,6 +11,6 @@
         string SortColumn { get; }
         DateTime? StartDate { get; }
 
-        T GetData<T>(string key) where T : IComparable;
+        string? GetQueryData(string key);
     }
 }

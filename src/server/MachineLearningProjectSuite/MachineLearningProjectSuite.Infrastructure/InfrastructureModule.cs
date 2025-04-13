@@ -28,6 +28,10 @@ namespace MachineLearningProjectSuite.Infrastructure
                 .As<IPropertyListingService>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<HttpRequest>()
+                .As<IHttpRequest>()
+                .InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

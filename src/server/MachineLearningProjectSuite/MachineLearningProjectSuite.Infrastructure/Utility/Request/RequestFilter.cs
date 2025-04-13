@@ -12,7 +12,7 @@ namespace MachineLearningProjectSuite.Infrastructure.Utility.Request
 
         public string Search => Context.Request.Query["search"];
 
-        public int PageSize => Length > 0 ? Length : 10;
+        public int PageSize => Length > 0 ? Length : 50;
 
         public string SortColumn
         {
@@ -94,20 +94,10 @@ namespace MachineLearningProjectSuite.Infrastructure.Utility.Request
             }
         }
 
-        public T GetData<T>(string key)
-            where T : IComparable
+        public string? GetQueryData(string key)
         {
             var data = Context.Request.Query[key];
-            if (string.IsNullOrEmpty(data))
-                return default;
-            try
-            {
-                return (T)Convert.ChangeType(data.ToString(), typeof(T));
-            }
-            catch
-            {
-                return default;
-            }
+            return data;
         }
     }
 }
