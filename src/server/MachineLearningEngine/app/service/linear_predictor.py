@@ -6,6 +6,6 @@ model_path = os.path.join(os.path.dirname(__file__), '../models/trained/home_ren
 model = joblib.load(model_path)
 
 def predict_rent(data):
-    features = np.array([[data['beds'],data['bath'],data['area'],data['address'],data['type']]])
+    features = np.array([[data['Bed'],data['Bath'],data['Area'],data['TypeValue']]])
     prediction = model.predict(features)
     return round(abs(prediction[0]), 2)

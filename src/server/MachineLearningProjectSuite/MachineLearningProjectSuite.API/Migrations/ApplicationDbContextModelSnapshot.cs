@@ -22,7 +22,7 @@ namespace MachineLearningProjectSuite.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MachineLearningProjectSuite.Domain.Entities.PropertyListing", b =>
+            modelBuilder.Entity("MachineLearningProjectSuite.Domain.Entities.Property.PropertyListing", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,9 +32,8 @@ namespace MachineLearningProjectSuite.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AddressValue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AddressValue")
+                        .HasColumnType("int");
 
                     b.Property<double>("Area")
                         .HasColumnType("float");
@@ -64,9 +63,8 @@ namespace MachineLearningProjectSuite.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TypeValue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TypeValue")
+                        .HasColumnType("int");
 
                     b.Property<string>("Url")
                         .IsRequired()

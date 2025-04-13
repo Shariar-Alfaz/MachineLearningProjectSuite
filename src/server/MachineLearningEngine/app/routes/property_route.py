@@ -10,7 +10,7 @@ def predict_property_price():
         return jsonify({"error": "Invalid input"}), 400
 
     # Validate input data
-    required_fields = ['beds', 'bath', 'area', 'address', 'type']
+    required_fields = ['Bed', 'Bath', 'Area', 'TypeValue']
     for field in required_fields:
         if field not in data:
             return jsonify({"error": f"Missing field: {field}"}), 400

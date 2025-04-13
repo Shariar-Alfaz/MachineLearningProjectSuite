@@ -22,13 +22,14 @@
     <div class="shadow-md p-5 w-full rounded-2xl border border-gray-200">
         <div class="grid grid-cols-12 items-center gap-4">
             <div class="col-span-10">
-                <div class="flex flex-wrap items-center gap-2  ms-5">
+                <div class="flex flex-wrap items-center gap-2">
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
                             Beds
                         </label>
                         <p-input-number size="small" [showButtons]="true" class="fix-width" spinnerMode="horizontal"
-                            buttonLayout="horizontal">
+                            buttonLayout="horizontal" [min]="1" [max]="8" [step]="1" placeholder="eg. 3"
+                            [(ngModel)]="searchProperty.bed">
                             <ng-template #incrementbuttonicon>
                                 <span class="pi pi-plus"></span>
                             </ng-template>
@@ -42,7 +43,8 @@
                             Bath
                         </label>
                         <p-input-number size="small" [showButtons]="true" class="fix-width" spinnerMode="horizontal"
-                            buttonLayout="horizontal">
+                            buttonLayout="horizontal" [min]="1" [max]="8" [step]="1" placeholder="eg. 2"
+                            [(ngModel)]="searchProperty.bath">
                             <ng-template #incrementbuttonicon>
                                 <span class="pi pi-plus"></span>
                             </ng-template>
@@ -53,30 +55,86 @@
                     </div>
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
-                            Area
+                            Area <sup class="text-xs font-normal">(ft<sup>2</sup>)</sup>
                         </label>
-                        <p-inputnumber size="small" prefix="" suffix=" ft²" />
+                        <p-inputnumber size="small" mode="decimal" [min]="100" [max]="32000" [minFractionDigits]="2"
+                            [maxFractionDigits]="5" placeholder="eg. 1200" [(ngModel)]="searchProperty.area" />
                     </div>
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
                             Location
                         </label>
-                        <p-select size="small" />
+                        <p-select styleClass="w-50" [filter]="true" panelStyleClass="text-sm"
+                            [options]="initData.addresses" optionLabel="address" optionValue="addressValue" size="small"
+                            placeholder="Select home location" [(ngModel)]="searchProperty.addressValue" />
                     </div>
                     <div class="flex-auto">
                         <label class="mb-2 block font-bold" for="beds">
-                            type
+                            Type
                         </label>
-                        <p-select size="small" />
+                        <p-select [options]="initData.types" styleClass="w-50" optionLabel="type"
+                            optionValue="typeValue" size="small" placeholder="Select home type"
+                            panelStyleClass="text-sm" [(ngModel)]="searchProperty.typeValue" />
                     </div>
                 </div>
             </div>
             <div class="col-span-2">
                 <div class="flex justify-end">
-                    <p-button label="Search" icon="pi pi-search" class="p-button-sm p-button-primary"></p-button>
+                    <p-button label="Search" icon="pi pi-search" class="p-button-sm p-button-primary"
+                        (onClick)="searchPropertyList()"></p-button>
                 </div>
 
             </div>
         </div>
+    </div>
+    @if(predictedPrice){
+    <div class="mt-8">
+        <p class="text-center">Based on your search estimated rental cost {{predictedPrice | number}} TK.</p>
+    </div>
+    }
+    <div class="mt-8">
+        <p-dataview #dv [value]="propertylist()" [layout]="'list'" [paginator]="true" [rows]="length"
+            [rowsPerPageOptions]="[10,20,30,50,75,100]" (onPage)="length = $event.rows" [lazy]="true"
+            [totalRecords]="totalRecords" (onLazyLoad)="loadData($event)">
+            <ng-template #list let-items>
+                <div class="space-y-4 ">
+                    <div *ngFor="let property of items let isEven = even"
+                        class="flex flex-col md:flex-row bg-white shadow-md border border-gray-200 rounded-2xl overflow-hidden">
+
+                        <!-- Image (Floor Plan) -->
+                        <img [src]="isEven?'/house1.jpg':'house2.jpg'" alt="Floor Plan"
+                            class="w-full md:w-64 h-48 md:h-auto object-cover">
+
+                        <!-- Content -->
+                        <div class="flex flex-col justify-between p-4 flex-grow">
+                            <div>
+                                <h2 class="text-2xl font-semibold mb-2">{{ property.title }}</h2>
+                                <div class="text-sm text-gray-600 space-y-1">
+                                    <p><strong>Location:</strong> {{ property.address }}</p>
+                                    <p><strong>Type:</strong> {{ property.type }}</p>
+                                    <p><strong>Purpose:</strong> {{ property.purpose }}</p>
+                                    <p><strong>Area:</strong> {{ property.area }} ft²</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center justify-between mt-4">
+                                <div class="text-primary text-xl font-bold">
+                                    TK.{{ property.price|number }}
+                                </div>
+                                <div class="flex gap-4 text-sm text-gray-700">
+                                    <span><strong>Beds:</strong> {{ property.beds }}</span>
+                                    <span><strong>Bath:</strong> {{ property.bath }}</span>
+                                </div>
+                                <a [href]="property.url" target="_blank"
+                                    class="bg-primary hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-xl transition mt-2 md:mt-0">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-template>
+        </p-dataview>
     </div>
 </div>

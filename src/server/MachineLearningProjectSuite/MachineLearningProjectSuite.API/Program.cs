@@ -1,6 +1,7 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using MachineLearningProjectSuite.Infrastructure;
 using MachineLearningProjectSuite.Persistence;
 using MachineLearningProjectSuite.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
@@ -24,14 +25,24 @@ try
     builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     {
         containerBuilder.RegisterModule(new PersistenceModule(connectionString!, migrationAssembly!));
+        containerBuilder.RegisterModule(new InfrastructureModule());
     });
 
     builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString, x => x.MigrationsAssembly(migrationAssembly)));
 
+    builder.Services.AddCors(p => p.AddPolicy("Learning", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    }));
+
     builder.Services.AddControllers();
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddOpenApi();
-
+    builder.Services.AddHttpContextAccessor();
+    builder.Services.AddHttpClient();
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
@@ -39,6 +50,8 @@ try
     {
         app.MapOpenApi();
     }
+
+    app.UseCors();
 
     app.UseHttpsRedirection();
 
