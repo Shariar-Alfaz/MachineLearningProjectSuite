@@ -15,7 +15,6 @@ export class PropertyService {
   }
 
   getPropertyListData(searchProperty: SearchProperty) {
-    debugger;
     const params = new HttpParams()
       .set('bed', searchProperty.bed?.toString() || '')
       .set('bath', searchProperty.bath?.toString() || '')
